@@ -19,13 +19,15 @@ public class UserService {
     }
 
     public User loginUser(String email, String password) {
-        User existingUser = userRepository.findByEmail(email);
 
-        if (existingUser != null && existingUser.getPassword().equals(password)) {
+        User existingUser = userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (existingUser.getPassword().equals(password)) {
             return existingUser;
         }
 
-        return null;
+        throw new RuntimeException("Invalid email or password");
     }
 
     public List<User> getAllUsers() {

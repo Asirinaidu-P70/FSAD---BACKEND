@@ -1,28 +1,30 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
+import com.example.demo.model.ContactMessage;
+import com.example.demo.repository.ContactMessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.demo.model.ContactMessage;
-import com.example.demo.service.ContactMessageService;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/contact")
-@CrossOrigin(origins = "http://127.0.0.1:4173")
 public class ContactMessageController {
 
     @Autowired
-    private ContactMessageService contactMessageService;
+    private ContactMessageRepository contactMessageRepository;
 
     @PostMapping
-    public ContactMessage saveMessage(@RequestBody ContactMessage message) {
-        return contactMessageService.saveMessage(message);
+    public ResponseEntity<?> saveContactMessage(@RequestBody ContactMessage message) {
+        ContactMessage savedMessage = contactMessageRepository.save(message);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedMessage);
     }
 
     @GetMapping
-    public List<ContactMessage> getAllMessages() {
-        return contactMessageService.getAllMessages();
+    public ResponseEntity<?> getAllContactMessages() {
+        List<ContactMessage> messages = contactMessageRepository.findAll();
+        return ResponseEntity.ok(messages);
     }
 }

@@ -16,7 +16,7 @@ public class WorkshopService {
 
     public List<Workshop> getAllWorkshops() {
         return workshopRepository.findAll();
-    }
+    }	
 
     public Workshop getWorkshopById(Long id) {
         return workshopRepository.findById(id).orElse(null);

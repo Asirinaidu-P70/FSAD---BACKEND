@@ -1,54 +1,23 @@
-package com.example.demo.model;
+package com.example.demo.dto;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Table(name = "users")
-public class User {
+public class UserResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false, unique = true)
     private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
     private String role;
-
     private String phone;
     private String location;
     private String title;
     private String company;
-
-    @Column(length = 2000)
     private String bio;
-
-    @ElementCollection
-    @CollectionTable(
-        name = "user_interests",
-        joinColumns = @JoinColumn(name = "user_id")
-    )
-    @Column(name = "interest")
-    private List<String> interests = new ArrayList<>();
-
+    private List<String> interests;
     private LocalDateTime createdAt;
 
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-    }
-
-    public User() {
+    public UserResponse() {
     }
 
     public Long getId() {
@@ -73,14 +42,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getRole() {

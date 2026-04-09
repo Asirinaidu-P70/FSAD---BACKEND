@@ -1,11 +1,10 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "contact_messages")
 public class ContactMessage {
 
     @Id
@@ -15,25 +14,22 @@ public class ContactMessage {
     private String name;
     private String email;
     private String subject;
+
+    @Column(length = 3000)
     private String message;
+
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
 
     public ContactMessage() {
     }
 
-    public ContactMessage(Long id, String name, String email, String subject, String message) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.subject = subject;
-        this.message = message;
-    }
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -67,4 +63,8 @@ public class ContactMessage {
     public void setMessage(String message) {
         this.message = message;
     }
-}	
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+}

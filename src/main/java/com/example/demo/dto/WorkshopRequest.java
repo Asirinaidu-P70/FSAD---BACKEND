@@ -1,37 +1,24 @@
-package com.example.demo.model;
+package com.example.demo.dto;
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "workshops")
-public class Workshop {
+public class WorkshopRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false)
+    @NotBlank(message = "Title is required")
     private String title;
 
     private String category;
     private String date;
     private String time;
-
-    @Column(length = 3000)
     private String description;
 
+    @NotNull(message = "Seats available is required")
     private Integer seatsAvailable;
+
     private String price;
 
-    public Workshop() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public WorkshopRequest() {
     }
 
     public String getTitle() {
@@ -89,4 +76,4 @@ public class Workshop {
     public void setPrice(String price) {
         this.price = price;
     }
-}
+}	
