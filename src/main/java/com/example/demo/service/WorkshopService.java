@@ -37,7 +37,7 @@ public class WorkshopService {
             existingWorkshop.setDescription(workshop.getDescription());
             existingWorkshop.setDate(workshop.getDate());
             existingWorkshop.setTime(workshop.getTime());
-            existingWorkshop.setSeats(workshop.getSeats());
+            existingWorkshop.setSeatsAvailable(workshop.getSeatsAvailable());
             existingWorkshop.setRating(workshop.getRating());
             existingWorkshop.setStatus(workshop.getStatus());
             existingWorkshop.setImageUrl(workshop.getImageUrl());

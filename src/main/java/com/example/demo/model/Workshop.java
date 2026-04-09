@@ -23,6 +23,12 @@ public class Workshop {
     private Integer seatsAvailable;
     private String price;
 
+    private String trainerName;
+    private String trainerRole;
+    private Double rating;
+    private String status;
+    private String imageUrl;
+
     public Workshop() {
     }
 
@@ -88,5 +94,45 @@ public class Workshop {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getTrainerName() {
+        return trainerName;
+    }
+
+    public void setTrainerName(String trainerName) {
+        this.trainerName = trainerName;
+    }
+
+    public String getTrainerRole() {
+        return trainerRole;
+    }
+
+    public void setTrainerRole(String trainerRole) {
+        this.trainerRole = trainerRole;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
